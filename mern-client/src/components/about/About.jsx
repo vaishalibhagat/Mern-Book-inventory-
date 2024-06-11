@@ -1,7 +1,6 @@
 import React from "react";
 import "../about/About.css";
 import img from "./image/about.jpg";
-// import FavBookImg from "../assets/FavBooks.jpg";
 
 function About() {
   return (
