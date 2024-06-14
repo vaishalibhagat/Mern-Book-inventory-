@@ -1,0 +1,44 @@
+/* styles.css */
+
+/* Basic sidebar styles */
+.sidebar {
+    position: fixed;
+    width: 250px; /* Adjust width as needed */
+    height: 100%;
+    transition: transform 0.3s ease;
+    background-color: #fff; /* Sidebar background color */
+    z-index: 1000; /* Ensure the sidebar is on top */
+  }
+  
+  /* Collapsed state for small screens */
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+  
+  /* Sidebar icon styles */
+  .sidebar-icon {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 15px; /* Adjust as needed */
+    left: 15px; /* Adjust as needed */
+    font-size: 24px; /* Adjust icon size as needed */
+    cursor: pointer;
+    z-index: 1001; /* Ensure the icon is above the sidebar */
+  }
+  
+  /* Show the sidebar icon on smaller screens */
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+    }
+  
+    .sidebar-icon {
+      display: block;
+    }
+  
+    /* Open state for small screens */
+    .sidebar.open {
+      transform: translateX(0);
+    }
+  }
+  

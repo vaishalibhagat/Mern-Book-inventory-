@@ -1,18 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import {  } from "react-icons/fa6";
 import { FaBlog, FaBarsStaggered, FaXmark } from "react-icons/fa6";
-import { AuthContext } from "../contects/AuthProvider";
 
 const Navbar = () => {
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(
+    window.innerWidth > 1300 ? true : false
+  );
+
   const [isSticky, setSticky] = useState(false);
 
-  const { user } = useContext(AuthContext);
-
   //toggle menu
-  const toggleMenu = () => {
-    setMenuOpen(isMenuOpen);
+  const closeNavHandler = () => {
+    if (window.innerWidth < 1300) {
+      setMenuOpen(false);
+    } else {
+      setMenuOpen(true);
+    }
   };
 
   useEffect(() => {
@@ -75,7 +78,7 @@ const Navbar = () => {
 
           {/* {menu btn for mobilr devices} */}
           <div className="md:hidden">
-            <button onClick={toggleMenu}>
+            <button onClick={() => setMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? (
                 <FaXmark className="h-5 w-5 text-black" />
               ) : (

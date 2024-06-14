@@ -1,4 +1,4 @@
-import React, { children, createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -6,7 +6,6 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { createBrowserRouter } from "react-router-dom";
 import app from "../firebase/firebase.config";
 
 export const AuthContext = createContext();
@@ -18,16 +17,44 @@ const AuthProvider = ({ children }) => {
 
   const createUser = async (email, password) => {
     setLoading(true);
-    return await createUserWithEmailAndPassword(auth, email, password);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setLoading(false);
+      return userCredential;
+    } catch (error) {
+      console.error("Error creating user:", error);
+      setLoading(false);
+      throw error;
+    }
   };
 
   const login = async (email, password) => {
     setLoading(true);
-    return await signInWithEmailAndPassword(auth, email, password);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setLoading(false); // Set loading to false after successful login
+      return userCredential;
+    } catch (error) {
+      setLoading(false); // Ensure loading is set to false even on error
+      console.error("Error logging in:", error);
+      throw error; // Re-throw the error to handle it in the component
+    }
   };
 
   const logOut = async () => {
-    return await signOut(auth);
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
   };
 
   useEffect(() => {
@@ -35,9 +62,7 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
     });
-    return () => {
-      return unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
 
   const authInfo = {
