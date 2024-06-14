@@ -29,7 +29,7 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
   }, []);
 
-  //navitem here
+  //navitem are here
   const navItem = [
     { link: "Home", path: "/" },
     { link: "About", path: "/about" },
