@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: "https://mern-book-client-coral.vercel.app",
-    methods: ["GET", "POST"],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
 );
