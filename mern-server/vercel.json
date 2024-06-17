@@ -2,18 +2,12 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/*.js",
-      "use": "@vercel/node"
+      "src": "src/**/*",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
     }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/upload-book",
-      "dest": "/api/upload-book.js"
-    }
+    { "src": "/(.*)", "dest": "/" }
   ]
 }
