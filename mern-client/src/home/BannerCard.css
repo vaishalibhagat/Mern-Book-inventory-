@@ -51,11 +51,11 @@ body {
 }
 
 .banner .swiper-slide:nth-child(1n) {
-  background-image: url('C:\MERN BOOK\mern-client\src\assets\banner-book\best.jpeg');
+  background-image: url('../assets/banner-book/autumn.jpg');
 }
 
 .banner .swiper-slide:nth-child(2n) {
-    background-image: url('C:\MERN BOOK\mern-client\src\assets\banner-book\end.jpeg');
+    background-image: url('../assets/banner-book/best.jpeg');
 }
 
 .banner .swiper-slide:nth-child(3n) {

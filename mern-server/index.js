@@ -12,7 +12,13 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 //middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: "",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 app.use(express.json()); //make conn with frontend -imp
 
 //database
